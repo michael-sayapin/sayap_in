@@ -115,7 +115,7 @@ The backdrop of the story is a small startup working on an IoT solution to optim
 
 When I joined as a contractor, it was all pretty bare. Backend was a single Python file keeping all data in memory. Firmware was clearly smacked together from examples (complete with example comments). A few customers. Decent custom hardware and a pretty good frontend though.
 
-Technically, writing a new backend for them was a "rewrite", since the company had a Python file. But it was one of those situations where the project was small enough and with a lot of kinks to justify doing it from scratch. So in less than a month the "first contact" between hardware and the new backend was made.
+Technically, writing a new backend for them was a "rewrite", since the company had a Python file. But it was one of those situations where the project was small enough and not-really-doing-what-it-should've-been-doing to justify doing it from scratch. So in less than a month the "first contact" between hardware and the new backend was made.
 
 The firmware evolved separately, and its code quality was not great. It was written by a very smart developer, but with barely any experience in C, it had all kinds of memory leaks, unexpected shutdowns, core dumps, and other stuff that rids the embedded programming world.
 
@@ -129,17 +129,19 @@ However, of course, the business continues evolving, and soon they found themsel
 
 Then they made a mistake.
 
-Since the ex-developer was practicing C on his new job, he learned a lot, and his old code (with my clumsy fixes) was not up to his snuff. So he proposed to rewrite it from scratch, with a classic software estimate of "a few months". They called it "Ferrari firmware" since, of course, after rewrite it was supposed to be sleek, shiny, and fast.
+Since the ex-developer was practicing C on his new job, he learned a lot, and his old code (with my clumsy fixes) was not up to his snuff. So he proposed to rewrite it from scratch, with a classic software estimate of "a few months". They called it "Ferrari firmware" since, of course, after rewrite it was supposed to be sleek, shiny, and fast. (And I called the original firmware "Santana" because it just kept working, no matter what.) :-)
 
 The founder somehow agreed to that.
 
-Feeling the invigorating rush of Rewriting, they decided since they do it, why not also rewrite the Protobuf Protocol?
+Feeling the invigorating rush of Rewriting, they decided since they do it, why not also rewrite the Protobuf Protocol? (Since it was incrementally updated from JSON, it inherited much of it's structure.)
 
 Great, two rewrites at once, in a team of 3. What can go wrong.
 
 Fast forward "a few months", of course, the project status is basically on the back burner. The C developer got busy with his job, nobody could really help, so everything stalled.
 
-Here's your chance to cut your losses! They decided to persevere.
+Here's your chance to cut your losses!
+
+They decided to persevere.
 
 In the meantime, the business was selling hardware with the old, patched firmware, and since I had some extra time again, I agreed to help in patching it further and add new features. Yes, to the old firmware that was being rewritten, because that's what was sellable. So the goalposts started shifting forward and forward, and nobody could catch up to them.
 
@@ -151,9 +153,9 @@ We spent another 3+ developer-months trying to wrestle the backend to speak both
 
 Was it worth it?
 
-Yes, the new firmware code quality is miles better than the old. Could they incrementally improve the old code using those 20+ developer-months (or, probably, much less)? The two firmwares still didn't quite reach feature parity, so this saga is still ongoing.
+Yes, the new firmware code quality is miles better than the old. Could we incrementally improve the old code using those 20+ developer-months (or, probably, much less)? The two firmwares still didn't quite reach feature parity, so this saga is still ongoing.
 
-Ironically, the new protocol is better organized, but more than twice the traffic on the wire, with lots of fixes being added weekly. Could they do a proper evolution using Protobuf's excellent versioning capabilities?
+Ironically, the new protocol is better organized, but more than twice the traffic on the wire, with lots of fixes being added weekly. Could we do a proper evolution using Protobuf's excellent versioning capabilities?
 
 Remember the Gall's law:
 

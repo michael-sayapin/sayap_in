@@ -1,12 +1,15 @@
 body {
 	font-family: 'Fira Sans', sans-serif;
-	line-height: 2;
+	line-height: 1.8;
 }
 header nav a {
 	margin-left: 1rem;
 }
 .site-description p {
 	margin: 0;
+}
+.body p {
+	line-height: 1.8;
 }
 .body li::before {
 	content: '· ';
