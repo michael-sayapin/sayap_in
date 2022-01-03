@@ -1,0 +1,4 @@
+baseURL = 'https://sayap.in/'
+languageCode = 'en-us'
+title = 'Sayap.in'
+theme = "ananke"
