@@ -1,7 +1,6 @@
 ---
 title: "On Rewrites"
 date: 2022-01-03T14:38:57+08:00
-draft: true
 ---
 
 
