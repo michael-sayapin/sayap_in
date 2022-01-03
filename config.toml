@@ -1,4 +1,35 @@
 baseURL = 'https://sayap.in/'
 languageCode = 'en-us'
 title = 'Sayap.in'
-theme = "pure"
+theme = "archie"
+
+copyright = "© Michael Sayapin"
+pygmentsstyle = "monokai"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+paginate = 10
+
+[params]
+	mode = "toggle"
+	subtitle = "Michael v.1.0.0 verbal-textual output"
+
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "All posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4

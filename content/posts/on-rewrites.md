@@ -1,9 +1,8 @@
 ---
 title: "On Rewrites"
 date: 2022-01-03T14:38:57+08:00
-summary: I want to share two stories from my personal software career, one of a successful, and one of a somewhat-successful-but-terribly-wasteful rewrite.
+tldr: Much has been written about software rewrites. I want to share two stories from my personal software career, one of a successful, and one of a somewhat-successful-but-terribly-wasteful rewrite.
 ---
-
 
 # On Rewrites
 
