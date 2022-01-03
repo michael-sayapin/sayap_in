@@ -1,0 +1,14 @@
+body {
+	font-family: 'Fira Sans', sans-serif;
+	line-height: 2;
+}
+header nav a {
+	margin-left: 1rem;
+}
+.site-description p {
+	margin: 0;
+}
+.body li::before {
+	content: '· ';
+	padding-right: 0.5rem;
+}

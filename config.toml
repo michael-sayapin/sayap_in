@@ -11,8 +11,9 @@ pygmentscodefencesguesssyntax = true
 paginate = 10
 
 [params]
-	mode = "toggle"
-	subtitle = "Michael v.1.0.0 verbal-textual output"
+	mode = "auto"
+	subtitle = "`Michael Sayapin v.1.0.0 verbal-textual output:`"
+	customcss = ["css/sayap.css"]
 
 [[menu.main]]
 name = "Home"

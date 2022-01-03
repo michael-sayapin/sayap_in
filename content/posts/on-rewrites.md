@@ -1,22 +1,25 @@
 ---
 title: "On Rewrites"
 date: 2022-01-03T14:38:57+08:00
-tldr: Much has been written about software rewrites. I want to share two stories from my personal software career, one of a successful, and one of a somewhat-successful-but-terribly-wasteful rewrite.
+tags:
+- software
+- unsolicited opinion
+description: Much has been written about software rewrites. I want to share two stories from my personal software career, one of a successful, and one of a somewhat-successful-but-terribly-wasteful rewrite.
 ---
 
 # On Rewrites
 
-Much — https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/
+**Much** — https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/
 
-Has — https://steveblank.com/2011/01/25/startup-suicide-%E2%80%93-rewriting-the-code/
+**Has** — https://steveblank.com/2011/01/25/startup-suicide-%E2%80%93-rewriting-the-code/
 
-Been — https://levelup.gitconnected.com/why-rewriting-applications-from-scratch-is-almost-always-a-bad-idea-5402d1715006
+**Been** — https://levelup.gitconnected.com/why-rewriting-applications-from-scratch-is-almost-always-a-bad-idea-5402d1715006
 
-Written — https://index.medium.com/the-story-of-every-software-rewrite-b2e83c3411d8
+**Written** — https://index.medium.com/the-story-of-every-software-rewrite-b2e83c3411d8
 
-About — https://www.forbes.com/sites/forbestechcouncil/2021/07/29/why-you-should-refactor---not-rewrite---your-code/
+**About** — https://www.forbes.com/sites/forbestechcouncil/2021/07/29/why-you-should-refactor---not-rewrite---your-code/
 
-Rewrites — https://gitential.com/to-rewrite-or-refactor-shakespeare-for-software-engineers/
+**Rewrites** — https://gitential.com/to-rewrite-or-refactor-shakespeare-for-software-engineers/
 
 I will not repeat those points. I agree with them. Here I want to share two stories from my personal software career, one of a successful, and one of a somewhat-successful-but-terribly-wasteful rewrite.
 
@@ -45,7 +48,7 @@ The whole conundrum landed me the job as the Team Lead (with no team yet) on the
 
 However, when I saw the "source" I was truly horrified. The website was basically several parts: catalog, order/billing, and backoffice. The "source" had three files too: `catalog1.php`, `order.php`, `_manager.php` — each one well over 10,000 LoC, and each one a sumptuous mix of PHP spaghetti, HTML, and SQL. It all talked to a MySQL DB designed in a very similar way. The folder also had some other files like `qqq.php` and `q.php` and `sdfsfsds.html`.
 
-It was a disaster.
+It was a **disaster**.
 
 And I just agreed to inherit a very unique set of problems:
 
