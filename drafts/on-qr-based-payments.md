@@ -1,0 +1,1 @@
+On QR-based payments
