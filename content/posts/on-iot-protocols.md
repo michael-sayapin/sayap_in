@@ -103,15 +103,15 @@ Thus one of the most interesting features of MQTT is it's publish/subscribe patt
 
 It is a duplex protocol as well, you can send messages to the devices at any time. MQTT connections keep their health status by using ping-pong keepalive. When connecting, the *client* is declaring that it will send pings with a specific interval (e.g. every 60 seconds). When the server did not receive ping in 1.5x this interval (i.e. 90 seconds), it will close the connection and declare the client dead. During connection, the client can also declare a special "last will" message, which will be published by the broker at this moment, so you can process these disconnection events.
 
-MQTT defines several levels of message delivery guarantees (aka "QoS"): 0 or at most once, 1 or at least once, and 2 or exactly once. QoS 0 is "fire and forget", if the connection was bad or the recipient overloaded, the message is lost. QoS 1 is acknowledged by the recipient, and if not acknowledged within a certain time frame, it is resent (similar to CoAP's confirmable messages). QoS 2 employs a sophisticated 3-way acknowledge (acknowledge the acknowledge), and is typically not used with constrained or embedded devices.
+MQTT defines several levels of message delivery guarantees (aka "QoS"): 0 or at most once, 1 or at least once, and 2 or exactly once. QoS 0 is "fire and forget", if the connection was bad or the recipient overloaded, the message is lost. QoS 1 is acknowledged by the broker, and if not acknowledged within a certain time frame, it is resent (similar to CoAP's confirmable messages). QoS 2 employs a sophisticated 3-way acknowledge (acknowledge the acknowledge), and is typically not used with constrained or embedded devices.
 
 Clients can connect with a boolean "clean session" flag. If it is not set, any QoS 1 or 2 messages that might have accumulated for this client and were not acknowledged are resent. If it's set, all the messages for this client are discarded.
 
-Publish/subscribe nature of MQTT is also its weakness: if you application need some kind of request/response pattern (e.g. server: "turn on LED"... client: "OK! LED turned on!"), with MQTT you need to handle this in application layer.
+Publish/subscribe nature of MQTT is also its weakness: if your application needs some kind of request/response pattern (e.g. server: "turn on LED"... client: "OK! LED turned on!"), with MQTT you need to handle this in application layer.
 
 Since MQTT works over TCP, it can be secured with TLS. It also provides username+password or certificate authentication mechanism, and some brokers have means to authorize topics via some kind of ACL (otherwise any device can subscribe to `#`).
 
-There's also a plenthora of brokers to choose from, which is a great practical strength of MQTT. To avoid a single point of failure (SPoF) situation, it is possible to deploy clustered brokers like VerneMQ, HiveMQ, or RabbitMQ in MQTT mode. Apache Kafka also has a separate MQTT Proxy product which can help with ingesting IoT messages directly into Kafka.
+There's also a plenthora of brokers to choose from, which is a great practical strength of MQTT. To avoid a single point of failure (SPoF) situation, it is possible to deploy clustered brokers like VerneMQ, HiveMQ, or RabbitMQ in MQTT mode. Apache Kafka also has a separate proprietary MQTT Proxy product which can help with ingesting IoT messages directly into Kafka.
 
 Some brokers also provide an ability to transport MQTT over WebSocket `ws://` or `wss://` endpoints, which means it can be proxied via Cloudflare, ingressed by Kubernetes Ingress, load balanced, and does not need any exotic ports in the firewall. SysOps and Security departments adore this! And yes, you can talk to WebSocket MQTT from JavaScript.
 
@@ -163,7 +163,7 @@ Disadvantages:
 
 Lightweight Machine to Machine protocol is a more opinionated IoT protocol that includes, beyond simple messaging, specifications for device management, provisioning, lifecycle, and configuration.
 
-Original LwM2M v.1.0 circa 2017 used CoAP over UDP (or, yukes, SMS) as transport, version v.1.1 added TCP with optional TLS security, and the freshly baked v.1.2 (out in Nov 2020) supports HTTP and MQTT as transport.
+Original LwM2M v.1.0 circa 2017 used CoAP over UDP (or, yikes, SMS) as transport, version v.1.1 added TCP with optional TLS security, and the freshly baked v.1.2 (out in Nov 2020) supports HTTP and MQTT as transport.
 
 This protocol operates on a structured representation of devices:
 
@@ -183,7 +183,7 @@ Data can travel in LwM2M in several formats: plain text, binary, CBOR (tightly p
 
 If all of this sounds overly complicated, it's because it is. As an IoT protocol, LwM2M tries to provide a framework for **everything** — transport, exchange format, bootstrapping, discovery, reading and writing, event streams, some kind of RPC, access control, and so on, and so on.
 
-It's a very hairy job to be able to do all these things equally well, and I have a strong feeling that choosing LwM2M has a lot of non-reversible impact on all of the other parts of the IoT solution (i.e. firmware, backend, even hardware). It sounds like something it would be close to impossible to opt out of, if necessary.
+It's a very hairy job to be able to do all these things equally well, and I have a strong feeling that choosing LwM2M has a lot of non-reversible impact on all of the other parts of the IoT solution (i.e. firmware, backend, even hardware). It sounds like something that would be close to impossible to opt out of, if necessary.
 
 It might be a good choice for some kind of industrial gateways or complicated PLC equipment with hundreds of datapoints, produced by a big vendor like Eaton or Murata. For IoT startups this sounds like a swamp to get stuck in. YMMV.
 
@@ -203,9 +203,9 @@ Compared to MQTT, which tries to be as lightweight as possible (there are comple
 
 Clients can publish messages and subscribe to "queues" (very similar to topics in MQTT), but in AMQP a Queue has more features.
 
-The main difference is that be default AMQP queues are durable. In MQTT (v.3), if nobody is subscribed to a specific topic (and there's no pending subscribed clients with "clean session = false"), messages sent to it are discarded by the broker. In AMQP, the messages are persisted and will be delivered later. Most brokers also expose per-queue or per-message TTL and / or maximum size, and often rate limits per client as well.
+The main difference is that by default AMQP queues are durable. In MQTT (v.3), if nobody is subscribed to a specific topic (and there's no pending subscribed clients with "clean session = false"), messages sent to it are discarded by the broker. In AMQP, the messages are persisted and will be delivered later. Most brokers also expose per-queue or per-message TTL and / or maximum size, and often rate limits per client as well.
 
-AMQP queues can distribute messages evenly between subscribed clients, while MQTT (v.3) topics can only fanout (so MQTT is not suitable for Worker pattern).
+AMQP queues can distribute messages evenly between subscribed clients, while MQTT (v.3) topics can only fanout (so MQTT is not suitable for Distributed Worker pattern where consumers grab new a message to process as soon as they finish working on the previous one).
 
 Consumers in AMQP can flexibly acknowledge message processing, i.e. do the "work" and then signal the broker to delete the message, or error out and send a negative acknowledge (NACK), so the message is back to the queue and another consumer can retry it. The message can also be automatically routed to a "dead letter queue", which allows for very flexible erroneous message processing.
 

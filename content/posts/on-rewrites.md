@@ -4,7 +4,7 @@ date: 2022-01-03T14:38:57+08:00
 tags:
 - software
 - unsolicited opinion
-description: Much has been written about software rewrites. I want to share two stories from my personal software career, one of a successful, and one of a somewhat-successful-but-terribly-wasteful rewrite.
+description: Much has been written (and rewritten!) about software rewrites. I want to share two stories from my personal career, one of a successful, and one of a somewhat-successful-but-terribly-wasteful rewrite.
 ---
 
 # On Rewrites
@@ -103,8 +103,8 @@ Either way, the morale of the story is:
 - ~~don't get in arguments with your developers~~,
 - only rewrite if you're absolutely cornered,
 - if you choose to rewrite, do it incrementally,
-- do not rewrite "in isolation", put rewritten parts out ASAP,
-- have a suite of integration tests, but don't spend too much time on it,
+- never rewrite "in isolation", put rewritten parts out ASAP,
+- have a suite of integration tests, but keep priorities straight,
 - dedicate 40/60 or 50/50 of time to porting and new features, the market doesn't care about your rewrite.
 
 ## Tale of the somewhat-successful-but-terribly-wasteful rewrite
@@ -121,7 +121,7 @@ The firmware evolved separately, and its code quality was not great. It was writ
 
 Since the original developer was remote and just got another job somewhere, I was left to patch and evolve this firmware to keep up with the business. In a few months it was reasonably stable, but since I'm also not a C programmer by any stretch, the code quality still was not great.
 
-During that time, we designed/evolved a new, Protobuf-based protocol to replace the old JSON-based protocol, cutting traffic 10x, and getting rid of all the magic strings and informal expectations on both sides. The replacement went well, with the same approach as above: we kept the logic very similar, and for a while supported both, then slowly did a bunch of over-the-air upgrades to the devices so eventually they all spoke Protobuf. JSON was then removed.
+During that time, we designed/evolved a new, Protobuf-based protocol to replace the old JSON-based protocol, cutting traffic 10x and getting rid of all the magic strings and informal expectations on both sides. The replacement went well using the same approach as above: we kept the logic very similar, and for a while supported both, then slowly did a bunch of over-the-air upgrades to the devices so eventually they all spoke Protobuf. JSON was then removed.
 
 My contract time was ending, I had another big gig coming up, so I left the company, only paying attention and supporting them a few days per week, to keep an eye on the new backend and its stability.
 
@@ -129,13 +129,13 @@ However, of course, the business continues evolving, and soon they found themsel
 
 Then they made a mistake.
 
-Since the ex-developer was practicing C on his new job, he learned a lot, and his old code (with my clumsy fixes) was not up to his snuff. So he proposed to rewrite it from scratch, with a classic software estimate of "a few months". They called it "Ferrari firmware" since, of course, after rewrite it was supposed to be sleek, shiny, and fast. (And I called the original firmware "Santana" because it just kept working, no matter what.) :-)
+Since the ex-developer was practicing C on his new job, he learned a lot, and his old code (with my clumsy fixes) was not up to his snuff. So he proposed to rewrite it from scratch, with a classic software estimate of "a few months". They called it "Ferrari firmware" since, of course, after rewrite it was supposed to be sleek, shiny, and fast. (And I called the original firmware "Santana" because it just kept working no matter what.) :-)
 
 The founder somehow agreed to that.
 
 Feeling the invigorating rush of Rewriting, they decided since they do it, why not also rewrite the Protobuf Protocol? (Since it was incrementally updated from JSON, it inherited much of it's structure.)
 
-Great, two rewrites at once, in a team of 3. What can go wrong.
+Great, two rewrites at once, in a team of 3.
 
 Fast forward "a few months", of course, the project status is basically on the back burner. The C developer got busy with his job, nobody could really help, so everything stalled.
 
