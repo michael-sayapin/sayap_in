@@ -1,7 +1,6 @@
 ---
 title: "On Iot Protocols"
 date: 2022-01-04T15:14:04+08:00
-draft: true
 description: When designing an IoT device, one the first questions you need to answer is how are you going to receive data from the device. There is no single industry standard, and many protocols have their unique pros and cons. I will try to summarize the current (2021) most popular choices and their advantages and disadvantages in specific scenarios.
 ---
 
@@ -224,14 +223,86 @@ Disadvantages:
 - complexity
 - resource-hungry for embedded use
 
-## ØMQ & ZMTP
-
-## NanoMQ
-
 ## HTTP
+
+Everybody know HTTP, so this might seem an easy choice for a simple IoT application. What could be easier? `POST` readings to your API, poll `GET` for new commands, and everything should "just work" ⓒ
+
+However, HTTP as an IoT protocol has numerous disadvantages. Take a typical HTTP request and response as an example:
+
+    $ curl -v -k -H 'Authorization: Basic T0Ps3c3t' https://iot.example.com/api/v1/device/DEADBEEFCAFE/commands/
+
+    GET /api/v1/device/DEADBEEFCAFE/commands/ HTTP/1.1
+    Host: iot.example.com
+    User-Agent: curl/7.74.0
+    Accept: */*
+    Authorization: Basic T0Ps3c3t
+
+    HTTP/1.1 200 OK
+    Access-Control-Allow-Credentials: true
+    Access-Control-Allow-Headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization
+    Access-Control-Allow-Methods: GET, PUT, POST, DELETE, PATCH, OPTIONS
+    Access-Control-Allow-Origin: *
+    Allow: GET, POST, HEAD, OPTIONS
+    Content-Language: en
+    Content-Length: 2
+    Content-Type: application/json
+    Date: Thu, 06 Jan 2022 13:26:11 GMT
+    Referrer-Policy: same-origin
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept, Accept-Language, Cookie, Origin
+    X-Content-Type-Options: nosniff
+    X-Custom-Header: 7g4b4isrLuS0IfpdXJooa6V1cA2AvkOQwJza0wRIvPKWTbD0bpnPzZZBb==
+
+    []
+
+We just basically transferred >900 bytes (+ SSL overhead of ~30%) to receive TWO: `[]`, for a total overhead of a whopping 50000+%. If you have a stable connection, not too many devices, and do not care about bandwidth, this might be a reasonable choice for its simplicity. For IoT projects that are aimed at scalability or are using constrained and unstable traffic, HTTP is definitely an overkill.
+
+Advantages:
+
+- ease of development
+- no custom server software
+
+Disadvantages:
+
+- bloated text-based protocol with limited control over response size
+- need to constantly poll the server for commands
 
 ## WebSocket
 
+After HTTP, the reasonable next step might be WebSocket, which is basically a raw TCP stream established over a persistent HTTP channel.
+
+Messages over WebSocket can be binary, and it's easy to send and receive arbitrary data. Communication typically happens over HTTP ports 80 or 443, and TLS can be handled by the standard means, e.g. `cert-manager` for Kubernetes, or even proxied with CloudFlare or analogs for a hands-free SSL certificate.
+
+However, all the same benefits can be obtained by using MQTT over WebSocket, which will also add mechanics to implement publish/subscribe pattern, delivery guarantees, authentication, and more. So there's no real niche for using pure WebSockets in IoT, unless you just want to stream some data, e.g. audio or video, from a device directly into a web browser.
+
+Advantages:
+
+- binary TCP with low overhead
+- ability to use existing tools for security
+
+Disadvantages:
+
+- less feature-rich than MQTT with basically same overhead
+
 ## gRPC
+
+Another possible protocol that works over HTTP is gRPC, Google's Protobuf-based Remote Procedure Call (RPC) protocol. Reportedly, the whole Google uses gRPC to communicate between all, probably thousands, of its microservices. Later it has been adopted as one of CNCF (Cloud Native Computing Foundation) projects. This protocol automatically handles argument serialization, retries, streaming, and authentication. Obviously, it's also an epitome of request/response pattern.
+
+gRPC standard includes implementations for "unary" (request/response), "server streaming", "client streaming", and "bidirectional streaming" procedure calls. All of this happens over HTTP/2 streams and/or WebSockets.
+
+In theory, this all sounds very interesting, but currently gRPC support is very limited on embedded IoT platforms like AVR, ESP. Only higher-level Linux-compatible platforms like Raspberry Pi can run gRPC, so it's not a very optimal choice for IoT projects working with constrained hardware.
+
+Advantages:
+
+- clear mapping of calls to procedures on client and server
+- flexible and secure authentication
+- automatic failover and retry mechanics
+
+Disadvantages:
+
+- limited support for popular IoT platforms
+- HTTP/2 can be resource hungry even on larger platforms
+
+Hope this information was helpful.
 
 As always, if you want me to help out in choosing a protocol, or have any questions, do not hesitate to reach out at `michael [at] sayap.in`.
