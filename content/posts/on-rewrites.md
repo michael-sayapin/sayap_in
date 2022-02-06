@@ -15,7 +15,7 @@ I will not repeat those points. I agree with them. Here I want to share two stor
 
 ## Tale of the Successful Rewrite
 
-Back in 2007, a year fresh from the college, I was freelancing and half-assedly looking for a new job, sending my resume here and there mostly on a whim. Freelancing pay was okay, albeit the projects were not challenging. Squarespace and even WordPress was not a thing yet, and most of those mom and pops small business websites were handcrafted.
+Back in 2007, a year fresh from college, I was freelancing and half-assedly looking for a new job, sending my resume here and there mostly on a whim. Freelancing pay was okay, albeit the projects were not challenging. Squarespace and even WordPress were not a thing yet, and most of those mom and pops small business websites were handcrafted.
 
 One day I got a call. A very distressed guy on the other end said: _"You say on your resume your strength is solving problems fast? We need that now. Can you come to this address now. Pay is not a problem."_ I was taken aback but rather intrigued. It was 2 or 3pm on a working day, but I had free time, so I went.
 
@@ -30,7 +30,7 @@ From the get go I saw that the "terrorist" team made a bunch of mistakes:
 - they turned off the (two) servers via `shutdown -h now` so they locked themselves out too,
 - this was either badly planned or spontaneous, so their company PCs were at the office, which they just lost access to.
 
-Within a few hours we managed to retrieve the servers and boot them in single mode (which means instant root access), change the `passwd`, remove all SSH `authorized_keys`, and ship them back to the ISP.
+Within a few hours, we managed to retrieve the servers and boot them in single mode (which means instant root access), change the `passwd`, remove all SSH `authorized_keys`, and ship them back to the ISP.
 
 The PCs — which nobody except the team knew the passwords to (no sysadmins/ops were in the company at the time) — also readily gave up their HDDs which turned out not to be encrypted. Yay. I had the source.
 
@@ -58,21 +58,21 @@ On a few previous freelance gigs, I tried this Shiny New Tech (typically, a red 
 
 ### Decouple and keep the database
 
-To convince the old PHP code to work together with new Django code, I kept the database running. It was badly designed, but I felt that trying to wrestle it into some kind of "normal form" would break more things than it would fix.
+To convince the old PHP code to work together with the new Django code, I kept the database running. It was badly designed, but I felt that trying to wrestle it into some kind of "normal form" would break more things than it would fix.
 
 So I used Django's `inspectdb` and generated a bunch of models. Many did not have any primary keys or any indexes, so I added that, but overall I left the DB in the same state.
 
-After that it was fairly easy to whip up a bunch of Apache `.htaccess` files (still a thing in 2007) to "steal" some requests from PHP and serve them with Django.
+After that, it was fairly easy to whip up a bunch of Apache `.htaccess` files (still a thing in 2007) to "steal" some requests from PHP and serve them with Django.
 
 ### 60% time on rewrite, 40% time on creating new value
 
-However, of course, no rewrite happens in vacuum. As I mentioned before, the company was an experiment in e-commerce by the retail chain boss, and it turned out that it was his "darling". He had great interest in what we were doing, and, what's not great, he had many many "suggestions" on how to improve things :-)
+However, of course, no rewrite happens in a vacuum. As I mentioned before, the company was an experiment in e-commerce by the retail chain boss, and it turned out that it was his "darling". He had a great interest in what we were doing, and, what's not great, he had many many "suggestions" on how to improve things :-)
 
-So in a very short time I found myself in the same boat as many other "rewriters": how to keep up with the business demand while trying to migrate a legacy codebase?
+So in a very short time, I found myself in the same boat as many other "rewriters": how to keep up with the business demand while trying to migrate a legacy codebase?
 
 No-how. It's impossible. It adds a bunch of bloat, you have to do everything twice, or you have to say "no" a lot, which doesn't make you any more popular.
 
-So we decided that we will migrate customer-facing parts first, and dedicate two days a week processing "tickets" from the boss and other stakeholders. This way we could show some progress, while actually spending more time on the rewrite. If a new feature was touching a still-legacy part, we found excuses or my project director (who was a top guy!) produced exhaustive lists of questions, so the feature would be in discussion for a while — all to buy me some time.
+So we decided that we will migrate customer-facing parts first, and dedicate two days a week processing "tickets" from the boss and other stakeholders. This way we could show some progress, while actually spending more time on the rewrite. If a new feature was touching a still-legacy part, we found excuses, or my project director (who was a top guy!) produced exhaustive lists of questions, so the feature would be in discussion for a while — all to buy me some time.
 
 ### High-level testing for development speed
 
@@ -84,11 +84,11 @@ After that, it went smoothly. In less than 3 months, "The Rewrite" was complete,
 
 Back-office people were happy (the pages were infinitely faster), my project director was happy, the boss was reasonably nonplussed (he turned out to be that "I only delegate 'cuz I'm too busy, I could've done it myself much better, of course" kind of guy).
 
-We even grew a few tens of percents during that time, to 50-60 orders per day. It was a long way to thousands of daily orders we saw in a few years, but it was a good start.
+We even grew a few tens of percent during that time, to 50-60 orders per day. It was a long way to thousands of daily orders we saw in a few years, but it was a good start.
 
 And I stayed true to Django (and allergic to PHP) ever since. It lived up to the promise of being "the web framework for perfectionists with deadlines", and we all have deadlines. If you don't have, either you're in a bubble (enjoy it while it lasts), or it's your last year in business. Rethink it.
 
-Either way, the morale of the story is:
+Either way, the moral of the story is:
 
 - ~~don't get in arguments with your developers~~,
 - only rewrite if you're absolutely cornered,
@@ -105,11 +105,11 @@ The backdrop of the story is a small startup working on an IoT solution to optim
 
 When I joined as a contractor, it was all pretty bare. Backend was a single Python file keeping all data in memory. Firmware was clearly smacked together from examples (complete with example comments). A few customers. Decent custom hardware and a pretty good frontend though.
 
-Technically, writing a new backend for them was a "rewrite", since the company had a Python file. But it was one of those situations where the project was small enough and not-really-doing-what-it-should've-been-doing to justify doing it from scratch. So in less than a month the "first contact" between hardware and the new backend was made.
+Technically, writing a new backend for them was a "rewrite", since the company had a Python file. But it was one of those situations where the project was small enough and not-really-doing-what-it-should've-been-doing to justify doing it from scratch. So in less than a month, the "first contact" between hardware and the new backend was made.
 
 The firmware evolved separately, and its code quality was not great. It was written by a very smart developer, but with barely any experience in C, it had all kinds of memory leaks, unexpected shutdowns, core dumps, and other stuff that rids the embedded programming world.
 
-Since the original developer was remote and just got another job somewhere, I was left to patch and evolve this firmware to keep up with the business. In a few months it was reasonably stable, but since I'm also not a C programmer by any stretch, the code quality still was not great.
+Since the original developer was remote and just got another job somewhere, I was left to patch and evolve this firmware to keep up with the business. In a few months, it was reasonably stable, but since I'm also not a C programmer by any stretch, the code quality still was not great.
 
 During that time, we designed/evolved a new, Protobuf-based protocol to replace the old JSON-based protocol, cutting traffic 10x and getting rid of all the magic strings and informal expectations on both sides. The replacement went well using the same approach as above: we took a small part, kept the logic very similar, and for a while supported both, then slowly did a bunch of over-the-air upgrades to the devices so eventually they all spoke Protobuf. JSON was then removed.
 
@@ -119,7 +119,7 @@ However, of course, the business continues evolving, and soon they found themsel
 
 Since the ex-developer was practicing C on his new job, he learned a lot, and his old code (with my clumsy fixes) was not up to his snuff. So he proposed to rewrite it from scratch, with a classic software estimate of "a few months".
 
-Feeling the invigorating rush of Rewriting, they decided since they do it, why not also rewrite the Protobuf Protocol? (Since it was incrementally updated from JSON, it inherited much of it's structure.)
+Feeling the invigorating rush of Rewriting, they decided since they do it, why not also rewrite the Protobuf Protocol? (Since it was incrementally updated from JSON, it inherited much of its structure.)
 
 Great, two rewrites at once, in a team of 3.
 
@@ -127,7 +127,7 @@ Fast forward "a few months", of course, the project status is basically on the b
 
 Here's your chance to cut your losses! But they decided to persevere.
 
-In the meantime, the business was selling hardware with the old, patched firmware, and since I had some extra time again, I agreed to help in patching it further and add new features. Yes, to the old firmware that was being rewritten, because that's what was sellable. So the goalposts started shifting forward and forward, and nobody could catch up to them...
+In the meantime, the business was selling hardware with the old, patched firmware, and since I had some extra time again, I agreed to help in patching it further and adding new features. Yes, to the old firmware that was being rewritten, because that's what was sellable. So the goalposts started shifting forward and forward, and nobody could catch up to them...
 
 ![](/images/refuk.jpg)
 
@@ -135,7 +135,7 @@ Long story short, this dragged for more than a year, ate 20+ developer-months, b
 
 However, it was finished together with the "new" protocol, which the backend did not speak, since it was not an incremental improvement, but a complete shift.
 
-We spent another 3+ developer-months trying to wrestle the backend to speak both "old" and "new" protocols at once, and this work is still ongoing, with my conservative estimate that another 6-9 months needed to finalize it.
+We spent another 3+ developer-months trying to wrestle the backend to speak both "old" and "new" protocols at once, and this work is still ongoing, with my conservative estimate that another 6-9 months are needed to finalize it.
 
 Was it worth it?
 
@@ -147,7 +147,7 @@ Remember the Gall's law:
 
 > A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works and cannot be made to work. You have to start over, beginning with a working simple system.
 
-The morale of the story is:
+The moral of the story is:
 
 - when a developer says "few months", ask for a working prototype in 4 weeks, and keep track of time from there,
 - cut your losses when it's clear that the project will take 10x time,
