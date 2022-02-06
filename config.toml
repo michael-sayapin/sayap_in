@@ -11,6 +11,9 @@ pygmentscodefencesguesssyntax = true
 
 paginate = 10
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [params]
 	mode = "auto"
 	subtitle = "`Michael Sayapin v.1.0.0 verbal-textual output:`"

@@ -28,3 +28,16 @@ ul > li {
 code, pre code {
 	font-size: 0.9rem;
 }
+
+.me {
+	float: right;
+	width: 40%;
+	margin: 0 0 1rem 1rem;
+}
+@media (max-width: 800px) {
+	.me {
+		display: block;
+		width: 100%;
+		margin: 0 0 1rem 0;
+	}
+}
