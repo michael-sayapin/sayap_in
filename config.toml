@@ -1,4 +1,5 @@
 baseURL = 'https://sayap.in/'
+staticDir = ['static']
 languageCode = 'en-us'
 title = 'Sayap.in'
 theme = "archie"

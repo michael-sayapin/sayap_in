@@ -1,6 +1,7 @@
 body {
-	font-family: 'Fira Sans', sans-serif;
-	line-height: 1.8;
+	font-family: Georgia, serif;
+	line-height: 1.6;
+	font-size: 1.1rem;
 }
 header nav a {
 	margin-left: 1rem;
@@ -9,9 +10,21 @@ header nav a {
 	margin: 0;
 }
 .body p {
+	font-family: Georgia, serif;
 	line-height: 1.8;
 }
 .body li::before {
 	content: '· ';
 	padding-right: 0.5rem;
+}
+article h1 {
+	font-size: 1.5rem;
+}
+ul > li {
+	margin-left: 1rem;
+	font-size: 1rem;
+	line-height: 1.8;
+}
+code, pre code {
+	font-size: 0.9rem;
 }

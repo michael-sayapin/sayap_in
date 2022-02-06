@@ -4,30 +4,20 @@ date: 2022-01-03T14:38:57+08:00
 tags:
 - software
 - unsolicited opinion
-description: Much has been written (and rewritten!) about software rewrites. I want to share two stories from my personal career, one of a successful, and one of a somewhat-successful-but-terribly-wasteful rewrite.
+description: Much has been written (and rewritten!) about software rewrites. I want to share two stories from my personal career, one of a successful, and one of a somewhat-successful-but-wasteful rewrite.
 ---
 
 # On Rewrites
 
-**Much** — https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/
+[Much](https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/) · [has](https://steveblank.com/2011/01/25/startup-suicide-%E2%80%93-rewriting-the-code/) · [been](https://levelup.gitconnected.com/why-rewriting-applications-from-scratch-is-almost-always-a-bad-idea-5402d1715006) · [written](https://index.medium.com/the-story-of-every-software-rewrite-b2e83c3411d8) · [about](https://www.forbes.com/sites/forbestechcouncil/2021/07/29/why-you-should-refactor---not-rewrite---your-code/) · [rewrites](https://gitential.com/to-rewrite-or-refactor-shakespeare-for-software-engineers/).
 
-**Has** — https://steveblank.com/2011/01/25/startup-suicide-%E2%80%93-rewriting-the-code/
-
-**Been** — https://levelup.gitconnected.com/why-rewriting-applications-from-scratch-is-almost-always-a-bad-idea-5402d1715006
-
-**Written** — https://index.medium.com/the-story-of-every-software-rewrite-b2e83c3411d8
-
-**About** — https://www.forbes.com/sites/forbestechcouncil/2021/07/29/why-you-should-refactor---not-rewrite---your-code/
-
-**Rewrites** — https://gitential.com/to-rewrite-or-refactor-shakespeare-for-software-engineers/
-
-I will not repeat those points. I agree with them. Here I want to share two stories from my personal software career, one of a successful, and one of a somewhat-successful-but-terribly-wasteful rewrite.
+I will not repeat those points. I agree with them. Here I want to share two stories from my personal software career, one of a successful, and one of a somewhat-successful-but-wasteful rewrite.
 
 ## Tale of the Successful Rewrite
 
 Back in 2007, a year fresh from the college, I was freelancing and half-assedly looking for a new job, sending my resume here and there mostly on a whim. Freelancing pay was okay, albeit the projects were not challenging. Squarespace and even WordPress was not a thing yet, and most of those mom and pops small business websites were handcrafted.
 
-One day I got a call. A very distressed guy on the other end said: "You say on your resume your strength is solving problems fast? We need that now. Can you come to this address now. Pay is not a problem." I was taken aback but rather intrigued. It was 2 or 3pm on a working day, but I had free time, so I went.
+One day I got a call. A very distressed guy on the other end said: _"You say on your resume your strength is solving problems fast? We need that now. Can you come to this address now. Pay is not a problem."_ I was taken aback but rather intrigued. It was 2 or 3pm on a working day, but I had free time, so I went.
 
 It was a small, badly lit office, but smack in the heart of the city. I lived nearby, so it took me just a few minutes. They seemed happy.
 
@@ -48,7 +38,7 @@ The whole conundrum landed me the job as the Team Lead (with no team yet) on the
 
 However, when I saw the "source" I was truly horrified. The website was basically several parts: catalog, order/billing, and backoffice. The "source" had three files too: `catalog1.php`, `order.php`, `_manager.php` — each one well over 10,000 LoC, and each one a sumptuous mix of PHP spaghetti, HTML, and SQL. It all talked to a MySQL DB designed in a very similar way. The folder also had some other files like `qqq.php` and `q.php` and `sdfsfsds.html`.
 
-It was a **disaster**.
+It was a disaster.
 
 And I just agreed to inherit a very unique set of problems:
 
@@ -76,11 +66,11 @@ After that it was fairly easy to whip up a bunch of Apache `.htaccess` files (st
 
 ### 60% time on rewrite, 40% time on creating new value
 
-However, of course, no rewrite happens in vacuum. As I mentioned before, the company was an experiment in e-commerce by the retail chain boss, and it turned out that it was his "pet project". He had great interest in what we were doing, and, what's not great, he had many many "suggestions" on how to improve things :-)
+However, of course, no rewrite happens in vacuum. As I mentioned before, the company was an experiment in e-commerce by the retail chain boss, and it turned out that it was his "darling". He had great interest in what we were doing, and, what's not great, he had many many "suggestions" on how to improve things :-)
 
 So in a very short time I found myself in the same boat as many other "rewriters": how to keep up with the business demand while trying to migrate a legacy codebase?
 
-No how, it's impossible. It adds a bunch of bloat, you have to do everything twice, or you have to say "no" a lot, which doesn't make you any more popular.
+No-how. It's impossible. It adds a bunch of bloat, you have to do everything twice, or you have to say "no" a lot, which doesn't make you any more popular.
 
 So we decided that we will migrate customer-facing parts first, and dedicate two days a week processing "tickets" from the boss and other stakeholders. This way we could show some progress, while actually spending more time on the rewrite. If a new feature was touching a still-legacy part, we found excuses or my project director (who was a top guy!) produced exhaustive lists of questions, so the feature would be in discussion for a while — all to buy me some time.
 
@@ -92,7 +82,7 @@ A Selenium script placed an order on the production website every 5 minutes. The
 
 After that, it went smoothly. In less than 3 months, "The Rewrite" was complete, and we even released a new back-office order processing page using another Shiny New Tech (ouch!) — jQuery! :-)
 
-Back-office people were happy (the pages were infinitely faster), my project director was happy, the boss was reasonably nonplussed (he turned out to be that "I only delegate because I'm too busy, I could've done it myself much better, of course" kind of guy).
+Back-office people were happy (the pages were infinitely faster), my project director was happy, the boss was reasonably nonplussed (he turned out to be that "I only delegate 'cuz I'm too busy, I could've done it myself much better, of course" kind of guy).
 
 We even grew a few tens of percents during that time, to 50-60 orders per day. It was a long way to thousands of daily orders we saw in a few years, but it was a good start.
 
@@ -107,7 +97,7 @@ Either way, the morale of the story is:
 - have a suite of integration tests, but keep priorities straight,
 - dedicate 40/60 or 50/50 of time to porting and new features, the market doesn't care about your rewrite.
 
-## Tale of the somewhat-successful-but-terribly-wasteful rewrite
+## Tale of the somewhat-successful-but-wasteful rewrite
 
 This story is much less dramatic than the previous one, but nevertheless a good example of what you're getting into, as a company, when deciding to rewrite.
 
@@ -121,17 +111,13 @@ The firmware evolved separately, and its code quality was not great. It was writ
 
 Since the original developer was remote and just got another job somewhere, I was left to patch and evolve this firmware to keep up with the business. In a few months it was reasonably stable, but since I'm also not a C programmer by any stretch, the code quality still was not great.
 
-During that time, we designed/evolved a new, Protobuf-based protocol to replace the old JSON-based protocol, cutting traffic 10x and getting rid of all the magic strings and informal expectations on both sides. The replacement went well using the same approach as above: we kept the logic very similar, and for a while supported both, then slowly did a bunch of over-the-air upgrades to the devices so eventually they all spoke Protobuf. JSON was then removed.
+During that time, we designed/evolved a new, Protobuf-based protocol to replace the old JSON-based protocol, cutting traffic 10x and getting rid of all the magic strings and informal expectations on both sides. The replacement went well using the same approach as above: we took a small part, kept the logic very similar, and for a while supported both, then slowly did a bunch of over-the-air upgrades to the devices so eventually they all spoke Protobuf. JSON was then removed.
 
 My contract time was ending, I had another big gig coming up, so I left the company, only paying attention and supporting them a few days per week, to keep an eye on the new backend and its stability.
 
 However, of course, the business continues evolving, and soon they found themselves needing more features in the firmware. But nobody in the team knew C really well. They engaged the ex-developer who agreed to dedicate a few hours per week.
 
-Then they made a mistake.
-
-Since the ex-developer was practicing C on his new job, he learned a lot, and his old code (with my clumsy fixes) was not up to his snuff. So he proposed to rewrite it from scratch, with a classic software estimate of "a few months". They called it "Ferrari firmware" since, of course, after rewrite it was supposed to be sleek, shiny, and fast. (And I called the original firmware "Santana" because it just kept working no matter what.) :-)
-
-The founder somehow agreed to that.
+Since the ex-developer was practicing C on his new job, he learned a lot, and his old code (with my clumsy fixes) was not up to his snuff. So he proposed to rewrite it from scratch, with a classic software estimate of "a few months".
 
 Feeling the invigorating rush of Rewriting, they decided since they do it, why not also rewrite the Protobuf Protocol? (Since it was incrementally updated from JSON, it inherited much of it's structure.)
 
@@ -139,15 +125,15 @@ Great, two rewrites at once, in a team of 3.
 
 Fast forward "a few months", of course, the project status is basically on the back burner. The C developer got busy with his job, nobody could really help, so everything stalled.
 
-Here's your chance to cut your losses!
+Here's your chance to cut your losses! But they decided to persevere.
 
-They decided to persevere.
+In the meantime, the business was selling hardware with the old, patched firmware, and since I had some extra time again, I agreed to help in patching it further and add new features. Yes, to the old firmware that was being rewritten, because that's what was sellable. So the goalposts started shifting forward and forward, and nobody could catch up to them...
 
-In the meantime, the business was selling hardware with the old, patched firmware, and since I had some extra time again, I agreed to help in patching it further and add new features. Yes, to the old firmware that was being rewritten, because that's what was sellable. So the goalposts started shifting forward and forward, and nobody could catch up to them.
+![](/images/refuk.jpg)
 
 Long story short, this dragged for more than a year, ate 20+ developer-months, but was eventually finished.
 
-However, it was finished together with the "new" Protobuf protocol, which the backend did not speak, since it was not an incremental improvement, but a complete shift.
+However, it was finished together with the "new" protocol, which the backend did not speak, since it was not an incremental improvement, but a complete shift.
 
 We spent another 3+ developer-months trying to wrestle the backend to speak both "old" and "new" protocols at once, and this work is still ongoing, with my conservative estimate that another 6-9 months needed to finalize it.
 
@@ -166,3 +152,5 @@ The morale of the story is:
 - when a developer says "few months", ask for a working prototype in 4 weeks, and keep track of time from there,
 - cut your losses when it's clear that the project will take 10x time,
 - it's okay to throw away / rewrite a small MVP if you still have an original team, with all the learnings from this MVP — don't do it if you don't!
+
+---

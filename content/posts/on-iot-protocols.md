@@ -305,6 +305,10 @@ Disadvantages:
 - limited support for popular IoT platforms
 - HTTP/2 can be resource hungry even on larger platforms
 
+---
+
+To summarize, MQTT is the usually the simplest choice if there are no sophisticated integration requirements. Brokers are available from all major cloud platforms, and libraries are there for most embedded frameworks.
+
 Hope this information was helpful.
 
 As always, if you want me to help out in choosing a protocol, or have any questions, do not hesitate to reach out at `michael [at] sayap.in`.
