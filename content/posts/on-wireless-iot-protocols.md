@@ -41,6 +41,8 @@ WiFi can be a good choice as IoT protocol if:
 
 WiFi HaLow aka IEEE 802.11ah is an initiative pushed almost entirely by a single company, Silex Technology. It uses similar packet structures as "normal" WiFi, but operates in a sub-GHz spectrum of 900 MHz. It allows for much better indoor coverage and penetration while keeping a rather high bandwidth of up to 347 Mbit/s.
 
+![Preved, HaLoW!](/images/halow.png)
+
 Why do I quote "WiFi"? Because this standard is based on WiFi but it's NOT WiFi. It needs special routers, special wireless chips, special bridges, special everything. Effectively, they could call it Krevedko HaLow.
 
 And herein lies the issue, there are barely 2-3 SoCs on the market, their price is high, and good luck finding an AP with HaLow support.
@@ -80,6 +82,8 @@ LoRa is using chirp spread spectrum (CSS) modulation, which is basically spreadi
 Typical LoRa modules use transmit power of 0.1, 0.2, 0.5, and then up to 1, 2, or even more Watts. 500 mW are most common, and in an urban environment, the range can be as good as 500-1000 meters.
 
 LoRa bandwidth can be adjusted using the so-called Spread Factor (SF) - the count of chirps per bit of transfer. It typically ranges from 7 (128 chirps per bit) to 12 (4096 chirps per bit). On SF7 the throughput per channel is ~10 kbps, on SF12 it's as low at 0.15 kbps (kiloBIT, i.e. 0.15 kbps is barely 18 bytes per second).
+
+![That's 25 km, boyz](/images/lora.png)
 
 Another factor for LoRa is regulatory. Some countries limit the duty cycle of LoRa devices to 10% or even 1%, making effective bandwidth per device 10x or 100x less. It is also necessary to pick correct frequency bands for different countries, so if your project is global, that can quickly get daunting.
 
