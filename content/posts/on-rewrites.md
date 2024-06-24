@@ -1,6 +1,6 @@
 ---
 title: "On Rewrites"
-date: 2022-01-03T14:38:57+08:00
+date: 2023-11-03T14:38:57+08:00
 tags:
 - software
 - unsolicited opinion

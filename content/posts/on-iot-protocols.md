@@ -1,12 +1,12 @@
 ---
 title: "On Iot Protocols"
-date: 2022-01-04T15:14:04+08:00
+date: 2024-01-04T15:14:04+08:00
 tags:
 - iot
-description: When designing an IoT device, one of the first questions you need to answer is how are you going to receive data from the device. There is no single industry standard, and many protocols have their unique pros and cons. I will try to summarize the current (2021) most popular choices and their advantages and disadvantages in specific scenarios.
+description: When designing an IoT device, one of the first questions you need to answer is how are you going to receive data from the device. There is no single industry standard, and many protocols have their unique pros and cons. I will try to summarize the current (2024) most popular choices and their advantages and disadvantages in specific scenarios.
 ---
 
-When designing an IoT device, one of the first questions you need to answer is how are you going to exchange data with the device. There is no single industry standard, and many protocols have their unique pros and cons. I will try to summarize the current (2021) most popular choices and their advantages and disadvantages in specific scenarios.
+When designing an IoT device, one of the first questions you need to answer is how are you going to exchange data with the device. There is no single industry standard, and many protocols have their unique pros and cons. I will try to summarize the current (2024) most popular choices and their advantages and disadvantages in specific scenarios.
 
 ## Raw TCP
 

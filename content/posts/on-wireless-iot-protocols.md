@@ -1,12 +1,12 @@
 ---
 title: "On Wireless IoT protocols"
-date: 2022-01-14T20:46:57+08:00
+date: 2024-02-14T20:46:57+08:00
 tags:
 - iot
-description: When designing an IoT device, another question you need to answer early is how are you going to connect devices to each other. Again, I will try to summarize the current (2021) most popular choices and their advantages and disadvantages in specific scenarios.
+description: When designing an IoT device, another question you need to answer early is how are you going to connect devices to each other. Again, I will try to summarize the current (2024) most popular choices and their advantages and disadvantages in specific scenarios.
 ---
 
-When designing an IoT device, another question you need to answer early is how are you going to connect devices to each other. Again, I will try to summarize the current (2021) most popular choices and their advantages and disadvantages in specific scenarios.
+When designing an IoT device, another question you need to answer early is how are you going to connect devices to each other. Again, I will try to summarize the current (2024) most popular choices and their advantages and disadvantages in specific scenarios.
 
 NB: This post is about *wireless* technologies, and is not touching 485, Ethernet, CAN, Modbus, and other typically wired thingies.
 
