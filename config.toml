@@ -15,9 +15,9 @@ paginate = 10
 unsafe = true
 
 [params]
-	mode = "auto"
-	subtitle = "`Michael Sayapin v.1.0.0 verbal-textual output:`"
-	customcss = ["css/sayap.css"]
+mode = "auto"
+subtitle = "`Michael Sayapin v.1.0.0 /dev/stdout:`"
+customcss = ["css/sayap.css"]
 
 [[menu.main]]
 name = "Home"
