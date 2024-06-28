@@ -164,7 +164,7 @@ Disadvantages:
 
 Lightweight Machine to Machine protocol is a more opinionated IoT protocol that includes, beyond simple messaging, specifications for device management, provisioning, lifecycle, and configuration.
 
-Original LwM2M v.1.0 circa 2017 used CoAP over UDP (or, yikes, SMS) as transport, version v.1.1 added TCP with optional TLS security, and the freshly baked v.1.2 (out in Nov 2020) supports HTTP and MQTT as transport.
+Original LwM2M v.1.0 circa 2017 used CoAP over UDP (or, yikes, SMS) as transport, version v.1.1 added TCP with optional TLS security, and the freshly baked v.1.2 supports HTTP and MQTT as transport.
 
 This protocol operates on a structured representation of devices:
 
@@ -248,7 +248,6 @@ However, HTTP as an IoT protocol has numerous disadvantages. Take a typical HTTP
     Content-Language: en
     Content-Length: 2
     Content-Type: application/json
-    Date: Thu, 06 Jan 2022 13:26:11 GMT
     Referrer-Policy: same-origin
     Strict-Transport-Security: max-age=15724800; includeSubDomains
     Vary: Accept, Accept-Language, Cookie, Origin
